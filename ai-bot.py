@@ -7,5 +7,4 @@ engine.say("my self akhand ")
 engine.runAndWait()
 print("hello")
 
-print("hello")
-
+print("akhand is dash dash")
