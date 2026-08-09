@@ -22,7 +22,7 @@ def processCommand(c):
         webbrowser.open("https://www.twitter.com")
     elif "open gmail" in c.lower():
         webbrowser.open("https://mail.google.com")
-    elif "open linkdin" in c.lower():
+    elif "open linkedin" in c.lower():
         webbrowser.open("https://www.linkedin.com")
     elif "open github" in c.lower():
         webbrowser.open("https://www.github.com")
@@ -31,9 +31,9 @@ def processCommand(c):
     
     
 if __name__ == "__main__":
-    speak("Initializing Kriti....") 
+    speak("Initializing jojo") 
     while True:
-        # Listen for the wake word "Kriti"
+        # Listen for the wake word "jojo"
         # obtain audio from the microphone
         r = sr.Recognizer()
 
@@ -43,13 +43,18 @@ if __name__ == "__main__":
                 print("Listening...")
                 audio = r.listen(source, timeout=2, phrase_time_limit=1)
             word= r.recognize_google(audio)
-            if(word.lower() == "Kriti"):
-                speak("yupp")
+            if "jojo" in word.lower():
+                speak("Yes, I am here. How can I assist you?")
                 # Listen for the next command
                 with sr.Microphone() as source:
                     print("Activate...")
                     audio = r.listen(source)
                     command = r.recognize_google(audio)
+            elif "Error" in word:
+                speak("I did not catch that. Please try again.")
+            else:
+                    speak("Please say the wake word 'jojo' to activate me.")
+
 
                     processCommand(command)
 
