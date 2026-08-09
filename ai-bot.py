@@ -1,4 +1,4 @@
-import Speech_Recognition as sr
+import speech_recognition as sr
 import webbrowser
 import pyttsx3
 
@@ -10,9 +10,9 @@ def speak(text):
     engine.runAndWait()
 
 if __name__ == "__main__":
-    speak("Initializing Kriti....") 
+    speak("Initializing Aura....") 
     while True:
-        # Listen for the wake word "Kriti"
+        # Listen for the wake word "Aura"
         # obtain audio from the microphone
         r = sr.Recognizer()
         try:
@@ -20,7 +20,7 @@ if __name__ == "__main__":
                 print("Listening...")
                 audio = r.listen(source, timeout=2, phrase_time_limit=1)
             command = r.recognize_google(audio)
-            if(command.lower() == "Kriti"):
+            if(command.lower() == "Aura"):
                 speak("Yes, how can I help you?")
                 # Listen for the next command
                 with sr.Microphone() as source:
