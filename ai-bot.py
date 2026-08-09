@@ -1,4 +1,4 @@
-mport SpeechRecognition 
+import SpeechRecognition 
 import pyttsx3
 import sounddevice
 import requests
