@@ -9,44 +9,51 @@ def speak(text):
     engine.say(text)
     engine.runAndWait()
 
+def processCommand(c):
+    if "open google" in c.lower():
+        webbrowser.open("https://www.google.com")
+    elif "open youtube" in c.lower():
+        webbrowser.open("https://www.youtube.com")
+    elif "open facebook" in c.lower():
+        webbrowser.open("https://www.facebook.com")
+    elif "open instagram" in c.lower():
+        webbrowser.open("https://www.instagram.com")
+    elif "open twitter" in c.lower():
+        webbrowser.open("https://www.twitter.com")
+    elif "open gmail" in c.lower():
+        webbrowser.open("https://mail.google.com")
+    elif "open linkdin" in c.lower():
+        webbrowser.open("https://www.linkedin.com")
+    elif "open github" in c.lower():
+        webbrowser.open("https://www.github.com")
+
+
+    
+    
 if __name__ == "__main__":
-    speak("Initializing Aura....") 
+    speak("Initializing Kriti....") 
     while True:
-        # Listen for the wake word "Aura"
+        # Listen for the wake word "Kriti"
         # obtain audio from the microphone
         r = sr.Recognizer()
+
+        print("recognizing...") 
         try:
             with sr.Microphone() as source:
                 print("Listening...")
                 audio = r.listen(source, timeout=2, phrase_time_limit=1)
-            command = r.recognize_google(audio)
-            if(command.lower() == "Aura"):
-                speak("Yes, how can I help you?")
+            word= r.recognize_google(audio)
+            if(word.lower() == "Kriti"):
+                speak("yupp")
                 # Listen for the next command
                 with sr.Microphone() as source:
-                    print("Listening for your command...")
+                    print("Activate...")
                     audio = r.listen(source)
-                    try:
-                        command = r.recognize_google(audio)
-                        print("You said: " + command)
-                        if "open Google" in command:
-                            speak("Opening Google")
-                            webbrowser.open("https://www.google.com")
-                        elif "open YouTube" in command:
-                            speak("Opening YouTube")
-                            webbrowser.open("https://www.youtube.com")
-                        elif "exit" in command:
-                            speak("Goodbye!")
-                            break
-                        else:
-                            speak("Sorry, I didn't understand that.")
-                    except sr.UnknownValueError:
-                        print("Google Speech Recognition could not understand audio")
-                    except sr.RequestError as e:
-                        print("Could not request results from Google Speech Recognition service; {0}".format(e))
+                    command = r.recognize_google(audio)
 
-       
+                    processCommand(command)
 
-        except sr.WaitTimeoutError:
-            print("Listening timed out while waiting for phrase to start")
+
+        except Exception as e:
+            print("Error; {0}".format(e))
 
