@@ -1,17 +1,4 @@
-import speech_recognition as sr
-<<<<<<< HEAD
-import pyttsx3
-import sounddevice
-import requests
-import webbrowser
-import datetime
-import os
-import subprocess
-import wikipedia
-from dotenv import python_dotenv
-import openai
-print("All modules imported successfully.")
-=======
+import Speech_Recognition as sr
 import webbrowser
 import pyttsx3
 
@@ -62,4 +49,4 @@ if __name__ == "__main__":
 
         except sr.WaitTimeoutError:
             print("Listening timed out while waiting for phrase to start")
->>>>>>> effd3e2 (Updated code)
+
