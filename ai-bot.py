@@ -41,7 +41,7 @@ if __name__ == "__main__":
         try:
             with sr.Microphone() as source:
                 print("Listening...")
-                audio = r.listen(source, timeout=2, phrase_time_limit=1)
+                audio = r.listen(source, timeout=5, phrase_time_limit=5)
             word= r.recognize_google(audio)
             if "jojo" in word.lower():
                 speak("Yes, I am here. How can I assist you?")
@@ -50,8 +50,9 @@ if __name__ == "__main__":
                     print("Activate...")
                     audio = r.listen(source)
                     command = r.recognize_google(audio)
-            elif "Error" in word:
-                speak("I did not catch that. Please try again.")
+            elif "false" in word:
+                speak("goodbye!")
+                break
             else:
                     speak("Please say the wake word 'jojo' to activate me.")
 
