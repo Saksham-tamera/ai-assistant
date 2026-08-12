@@ -68,6 +68,7 @@ if __name__ == "__main__":
                     answer = answer.replace(",","")
                     answer = answer.replace("#","")
                     speak(answer)
+                    print(answer)
             elif "false" in word:
                 speak("goodbye!")
                 break
