@@ -6,10 +6,12 @@ recognizer = sr.Recognizer()
 engine = pyttsx3.init()
 
 def speak(text):
+    print(f"Jojo: {text}")
     engine.say(text)
     engine.runAndWait()
 
 def processCommand(c):
+    c = c.lower()
     if "open google" in c.lower():
         webbrowser.open("https://www.google.com")
     elif "open youtube" in c.lower():
@@ -26,6 +28,8 @@ def processCommand(c):
         webbrowser.open("https://www.linkedin.com")
     elif "open github" in c.lower():
         webbrowser.open("https://www.github.com")
+    else:
+        speak("I don't know that command yet.")
 
 
     
@@ -41,25 +45,22 @@ if __name__ == "__main__":
         try:
             with sr.Microphone() as source:
                 print("Listening...")
-                audio = r.listen(source, timeout=5, phrase_time_limit=5)
+                audio = r.listen(source, timeout=5, phrase_time_limit=3)
             word= r.recognize_google(audio)
             if "jojo" in word.lower():
                 speak("Yes, I am here. How can I assist you?")
-                # Listen for the next command
                 with sr.Microphone() as source:
                     print("Activate...")
                     audio = r.listen(source)
+                try:
                     command = r.recognize_google(audio)
-            elif "false" in word:
-                speak("goodbye!")
-                break
-            else:
-                    speak("Please say the wake word 'jojo' to activate me.")
-
-
                     processCommand(command)
-
+                except sr.UnknownValueError:
+                    speak("I did not catch that command. Please try again.")
+                except sr.RequestError:
+                    speak("Voice service is unavailable. Please try again later.")
+            else:
+                speak("Please say the wake word 'jojo' to activate me.")
 
         except Exception as e:
             print("Error; {0}".format(e))
-
