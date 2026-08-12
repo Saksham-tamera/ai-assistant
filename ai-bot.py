@@ -1,6 +1,14 @@
+from openai import api_key
 import speech_recognition as sr
 import webbrowser
 import pyttsx3
+import os
+from dotenv import load_dotenv
+from google import genai
+
+load_dotenv()
+aapi_key = os.getenv("GEMINI_API_KEY")
+client = genai.Client(api_key=api_key)
 
 recognizer = sr.Recognizer()
 engine = pyttsx3.init()
@@ -50,6 +58,16 @@ if __name__ == "__main__":
                     print("Activate...")
                     audio = r.listen(source)
                     command = r.recognize_google(audio)
+
+                    response = client.models.generate_content(
+                        model="gemini-3.6-flash",
+                        contents=command
+                    )
+                    answer = response.text
+                    answer = answer.replace("*","")
+                    answer = answer.replace(",","")
+                    answer = answer.replace("#","")
+                    speak(answer)
             elif "false" in word:
                 speak("goodbye!")
                 break
