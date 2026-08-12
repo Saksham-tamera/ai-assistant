@@ -31,6 +31,8 @@ response = client.models.generate_content(
     )
 
 answer = response.text
-
+answer = answer.replace("*","")
+answer = answer.replace(",","")
+answer = answer.replace("#","")
 print("assistant:",answer)
 speak(answer)
