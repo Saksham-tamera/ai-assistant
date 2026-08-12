@@ -18,8 +18,6 @@ def speak(text):
 
 
 
-
-
 with sr.Microphone() as source:
     audio=r.listen(source)
 text = r.recognize_google(audio)

@@ -60,8 +60,8 @@ if __name__ == "__main__":
                     command = r.recognize_google(audio)
 
                     response = client.models.generate_content(
-                        model="gemini-3.6-flash",
-                        contents=command
+                            model="gemini-3.6-flash",
+                            contents=command
                     )
                     answer = response.text
                     answer = answer.replace("*","")
