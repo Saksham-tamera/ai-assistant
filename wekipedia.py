@@ -1,7 +1,7 @@
 import speech_recognition as sr
 import pyttsx3
 import wikipediaapi
-
+#initialize wikipedia api
 wiki = wikipediaapi.Wikipedia(
     language='en',
     user_agent='AI Assistant/1.0'
