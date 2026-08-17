@@ -4,7 +4,7 @@ import wikipediaapi
 #initialize wikipedia api
 wiki = wikipediaapi.Wikipedia(
     language='en',
-    user_agent='AI Assistant/1.0'
+    user_agent='AI Assistant/1.0'`
     )
 
 #initialize the recognizer
