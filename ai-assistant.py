@@ -23,14 +23,21 @@ with sr.Microphone() as source:
 text = r.recognize_google(audio)
 print("say somthing",text)
 
-response = client.models.generate_content(
+if "hey jojo"in text:
+    speak("ask your question")
+    print("ask your question")
+    response = client.models.generate_content(
     model="gemini-3.6-flash",
     contents=text
     )
 
-answer = response.text
-answer = answer.replace("*","")
-answer = answer.replace(",","")
-answer = answer.replace("#","")
-print("assistant:",answer)
-speak(answer)
+    answer = response.text
+    answer = answer.replace("*","")
+    answer = answer.replace(",","")
+    answer = answer.replace("#","")
+    print("assistant:",answer)
+    speak(answer)
+elif "bye jojo" in text:
+    speak("good bye!")
+else:
+    speak("i don't understand what you say")
